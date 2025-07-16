@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Transform your business with Dellizo's cutting-edge digital solutions. Experience innovation, speed, and security.">
+    <title>Dellizo - Enhanced Hero Section</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1d4ed8;
+            --secondary-blue: #3b82f6;
+            --accent-blue: #93c5fd;
+            --dark-blue: #172554;
+            --glow-color: rgba(59, 130, 246, 0.3);
+        }
+
+        body {
+            background: #0f172a;
+            color: #f3f4f6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 20% 30%, var(--primary-blue) 0%, var(--dark-blue) 40%, #0f172a 100%);
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(29, 78, 216, 0.05));
+            z-index: 1;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 50%, var(--accent-blue) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: var(--primary-blue); /* Fallback */
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 1rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .card-3d {
+            perspective: 1000px;
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .card-3d:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 20px 40px var(--glow-color);
+        }
+
+        .parallax-layer {
+            position: absolute;
+            transition: transform 0.2s ease-out;
+            will-change: transform;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(45deg, var(--secondary-blue), var(--accent-blue));
+            border-radius: 50%;
+            animation: particle-drift 15s infinite linear;
+            will-change: transform, opacity;
+        }
+
+        @keyframes particle-drift {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) scale(1.2); opacity: 0; }
+        }
+
+        .float-glow {
+            animation: float-glow 6s ease-in-out infinite;
+        }
+
+        @keyframes float-glow {
+            0%, 100% { transform: translateY(0) scale(1); box-shadow: 0 0 20px var(--glow-color); }
+            50% { transform: translateY(-20px) scale(1.05); box-shadow: 0 0 40px var(--glow-color); }
+        }
+
+        .typing-animation {
+            border-right: 3px solid var(--secondary-blue);
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .hero-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .hero-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.4s;
+        }
+
+        .hero-button:hover::before {
+            left: 100%;
+        }
+
+        .hero-button:focus {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 2px;
+        }
+
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, var(--accent-blue) 20%, transparent 80%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s, opacity 0.2s;
+        }
+
+        .custom-cursor.interactive {
+            transform: translate(-50%, -50%) scale(1.5);
+            background: radial-gradient(circle, var(--secondary-blue) 20%, transparent 80%);
+        }
+
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .particle, .float-glow, .typing-animation, .scroll-indicator {
+                animation: none;
+            }
+            .typing-animation {
+                border-right: none;
+            }
+            .parallax-layer {
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+
+    <!-- Particle Background -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="particle w-1 h-1" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle w-2 h-2" style="left: 30%; animation-delay: 2s;"></div>
+        <div class="particle w-1 h-1" style="left: 50%; animation-delay: 4s;"></div>
+        <div class="particle w-2 h-2" style="left: 70%; animation-delay: 1s;"></div>
+        <div class="particle w-1 h-1" style="left: 90%; animation-delay: 3s;"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-blue-motion-background-344.mp4" type="video/mp4">
+        </video>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <!-- Logo -->
+            <div class="mb-12 transform translate-y-12 opacity-0 transition-all duration-1000" data-scroll-animate>
+                <div class="w-24 h-24 mx-auto bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center float-glow">
+                    <span class="text-4xl font-bold text-white">D</span>
+                </div>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="space-y-8 transform translate-y-12 opacity-0 transition-all duration-1000 delay-200" data-scroll-animate>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                    Shape Your
+                    <span class="block gradient-text typing-animation" id="typing-text">Digital Destiny</span>
+                </h1>
+                <p class="text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto">
+                    Discover <span class="font-semibold text-blue-400">Dellizo's</span> revolutionary technology to propel your business into the future with unmatched innovation and performance.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="hero-button bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-blue-600 hover:to-blue-700" aria-label="Start your journey with Dellizo">
+                        Begin Now
+                    </button>
+                    <button class="hero-button glass-effect px-8 py-4 rounded-xl font-semibold text-lg border-2 border-blue-400 hover:bg-blue-400/10" aria-label="Explore Dellizo's features">
+                        Discover More
+                    </button>
+                </div>
+            </div>
+
+            <!-- Parallax Layers -->
+            <div class="parallax-layer w-32 h-32 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full opacity-20 top-10 left-10" data-depth="0.2"></div>
+            <div class="parallax-layer w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl opacity-15 bottom-20 right-20" data-depth="0.4"></div>
+            <div class="parallax-layer w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl opacity-25 top-1/3 right-1/4" data-depth="0.3"></div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-16 transform translate-y-12 opacity-0 transition-all duration-1000 delay-400" data-scroll-animate>
+                <div class="glass-effect p-6 card-3d">
+                    <div class="text-2xl font-bold text-blue-400">600+</div>
+                    <div class="text-gray-300">Projects Delivered</div>
+                </div>
+                <div class="glass-effect p-6 card-3d">
+                    <div class="text-2xl font-bold text-blue-400">99.99%</div>
+                    <div class="text-gray-300">Uptime Assurance</div>
+                </div>
+                <div class="glass-effect p-6 card-3d">
+                    <div class="text-2xl font-bold text-blue-400">24/7</div>
+                    <div class="text-gray-300">Global Support</div>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator">
+                <div class="w-5 h-8 border-2 border-blue-400 rounded-full flex justify-center">
+                    <div class="w-1 h-2 bg-blue-400 rounded-full mt-2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 transform translate-y-12 opacity-0 transition-all duration-1000" data-scroll-animate>
+                <h2 class="text-3xl md:text-5xl font-bold gradient-text">Empower Your Future</h2>
+                <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mt-4">
+                    Leverage Dellizo's next-gen solutions to unlock limitless possibilities for your business.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="glass-effect p-6 card-3d transform translate-y-12 opacity-0 transition-all duration-1004 delay-200" data-scroll-animate>
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl mb-6 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-400 mb-4">Blazing Speed</h3>
+                    <p class="text-gray-300">Performance optimized for instant results, redefining efficiency.</p>
+                </div>
+                <div class="glass-effect p-6 card-3d transform translate-y-12 opacity-0 transition-all duration-1000 delay-400" data-scroll-animate>
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl mb-6 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-400 mb-4">Ironclad Security</h3>
+                    <p class="text-gray-300">Advanced encryption ensures your data is safe and secure.</p>
+                </div>
+                <div class="glass-effect p-6 card-3d transform translate-y-12 opacity-0 transition-all duration-1000 delay-600" data-scroll-animate>
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl mb-6 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-400 mb-4">Seamless UX</h3>
+                    <p class="text-gray-300">Intuitive design that simplifies complexity effortlessly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('[data-scroll-animate]').forEach(el => observer.observe(el));
+
+        // Parallax Effect
+        let lastTime = 0;
+        function updateParallax(x, y, scrollY, timestamp) {
+            if (timestamp - lastTime < 16) {
+                requestAnimationFrame(() => updateParallax(x, y, scrollY, timestamp));
+                return;
+            }
+            lastTime = timestamp;
+
+            document.querySelectorAll('.parallax-layer').forEach(el => {
+                const depth = parseFloat(el.dataset.depth);
+                const moveX = x * depth * 20;
+                const moveY = (y + scrollY) * depth * 15;
+                el.style.transform = `translate(${moveX}px, ${moveY}px) scale(${1 + depth * 0.2})`;
+            });
+
+            requestAnimationFrame(t => updateParallax(x, y, scrollY, t));
+        }
+
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+            updateParallax(mouseX, mouseY, window.scrollY, performance.now());
+        });
+
+        window.addEventListener('scroll', () => {
+            updateParallax(mouseX, mouseY, window.scrollY, performance.now());
+        });
+
+        // Custom Cursor
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+            const interactive = e.target.closest('button, a');
+            cursor.classList.toggle('interactive', !!interactive);
+        });
+
+        // Typing Animation
+        const typingText = document.getElementById('typing-text');
+        if (typingText) {
+            const phrases = ['Digital Destiny', 'Business Evolution', 'Innovation Unleashed', 'Future Now'];
+            let phraseIndex = 0, charIndex = 0, isDeleting = false;
+
+            function typeWriter() {
+                const current = phrases[phraseIndex];
+                typingText.textContent = current.substring(0, charIndex);
+                if (!isDeleting) {
+                    charIndex++;
+                    if (charIndex > current.length) {
+                        isDeleting = true;
+                        setTimeout(typeWriter, 1500);
+                        return;
+                    }
+                } else {
+                    charIndex--;
+                    if (charIndex === 0) {
+                        isDeleting = false;
+                        phraseIndex = (phraseIndex + 1) % phrases.length;
+                    }
+                }
+                setTimeout(typeWriter, isDeleting ? 80 : 120);
+            }
+            setTimeout(typeWriter, 1000);
+        }
+    </script>
+</body>
+</html>
